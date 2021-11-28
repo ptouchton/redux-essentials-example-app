@@ -1,5 +1,8 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { PostAuthor } from './PostAuthor'
+import { ReactionButtons } from './ReactionButtons'
 
 export const SinglePostPage = ({ match }) => {
   const { postId } = match.params
@@ -20,7 +23,12 @@ export const SinglePostPage = ({ match }) => {
     <section>
       <article className="post">
         <h2>{post.title}</h2>
+        <PostAuthor userId={post.user} /><br/>
         <p className="post-content">{post.content}</p>
+        <Link to={`/editPost/${post.id}`} className="button">
+          Edit Post
+        </Link>
+        <ReactionButtons post={post} />
       </article>
     </section>
   )
